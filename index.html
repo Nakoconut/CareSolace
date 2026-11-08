@@ -53,7 +53,6 @@
     border-radius: 999px;
     font-weight: 600;
     font-size: 1.2rem;
-    text-align: center;
     border:none;
     color: var(--head);
   }
@@ -108,9 +107,11 @@
     <div class="wrap">
       <h1>Support any hour of the day.</h1>
       <p class="lead">CareSolace is an AI assistant curated for caregivers to help you find the right next step.</p>
-      <button class="custom-btn"; onclick="document.getElementById('chat-now').scrollIntoView({ behavior: 'smooth' });">
-        Click here to chat with it
-      </button>
+      <div style="display: flex; justify-content: center;">
+        <button class="custom-btn"; onclick="document.getElementById('chat-now').scrollIntoView({ behavior: 'smooth' });">
+          Click here to chat with it
+        </button>
+      </div>
     </div>
   </div>
 
@@ -162,10 +163,6 @@
   <!-- ================= END OF EDITABLE CONTENT ================= -->
 
 </main>
-
-<footer>
-  <div id = "chat-now"; class="wrap">&copy; 2026 CareSolace</div>
-</footer>
 
 <!-- ===== CX Agent Studio chat messenger (do not edit below this line) ===== -->
 <script defer
