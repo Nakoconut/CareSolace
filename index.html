@@ -176,13 +176,32 @@
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Tries to open the chat window by clicking the SDK's launcher button.
+  // Search the page, including shadow DOMs, for the chat launcher button.
+  function findLauncher(root) {
+    var buttons = root.querySelectorAll("button, [role='button']");
+    for (var i = 0; i < buttons.length; i++) {
+      var b = buttons[i];
+      var label = (b.getAttribute("aria-label") || b.title || b.textContent || "").toLowerCase();
+      var inTitlebar = b.closest("[slot='titlebar-actions']");
+      if (!inTitlebar && /chat|open|message|assistant|help/.test(label)) return b;
+    }
+    var all = root.querySelectorAll("*");
+    for (var j = 0; j < all.length; j++) {
+      if (all[j].shadowRoot) {
+        var found = findLauncher(all[j].shadowRoot);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
   document.getElementById("open-chat").addEventListener("click", function () {
-    var m = document.querySelector("chat-messenger");
-    if (!m) return;
-    var root = m.shadowRoot || m;
-    var launcher = root.querySelector("chat-messenger-button, button");
-    if (launcher) launcher.click();
+    var launcher = findLauncher(document);
+    if (launcher) {
+      launcher.click();
+    } else {
+      alert("Please use the chat button at the bottom right of the page.");
+    }
   });
 </script>
 
