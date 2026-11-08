@@ -57,7 +57,7 @@
     max-width: 14em;
   }
   .lead { font-size: clamp(1.1rem, 1rem + 0.6vw, 1.3rem); color: var(--muted); max-width: 34em; margin: 0 0 28px; }
-  .pill {
+  .custom-btn {
     display: inline-block;
     background: var(--soft);
     padding: 10px 18px;
@@ -116,8 +116,8 @@
     <div class="wrap">
       <h1>Support any hour of the day.</h1>
       <p class="lead">CareSolace is an AI assistant that helps you find the right next step.</p>
-      <button onclick="document.getElementById('chat-now').scrollIntoView({ behavior: 'smooth' });">
-        Chat with us now!
+      <button class="custom-btn"; onclick="document.getElementById('chat-now').scrollIntoView({ behavior: 'smooth' });">
+        Click here to chat with it
       </button>
     </div>
   </div>
