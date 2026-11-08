@@ -3,209 +3,60 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CareSolace – support whenever you need it</title>
-<meta name="description" content="CareSolace is a chat assistant that helps you find answers and get support, any hour of the day.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<title>CareSolace</title>
 <style>
-  :root {
-    --bg: #eaf1f2;
-    --surface: #f8fbfb;
-    --ink: #10333a;
-    --muted: #46636a;
-    --line: #c5d6d9;
-    --accent: #1f6f8b;
-    --accent-ink: #ffffff;
-    --soft: #f6e7a8;
-    --head: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
-    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
   body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.6;
+    color: #1d2b30;
+    background: #f4f8f8;
     margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 400 1.0625rem/1.6 var(--body);
   }
-  a { color: var(--accent); }
-  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-
-  header .wrap {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 22px; padding-bottom: 22px;
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 120px;
   }
-  .brand { font: 700 1.35rem var(--head); letter-spacing: -0.01em; text-decoration: none; color: var(--ink); }
-  nav a { margin-left: 22px; color: var(--muted); text-decoration: none; font-weight: 500; }
-  nav a:hover { color: var(--ink); text-decoration: underline; }
-
-  .hero { padding: 56px 0 88px; }
-  .hero .wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
-  h1 {
-    font: 700 clamp(2.4rem, 5.4vw, 4.2rem)/1.04 var(--head);
-    letter-spacing: -0.025em; margin: 0 0 22px;
-  }
-  .lead { font-size: 1.2rem; color: var(--muted); max-width: 34em; margin: 0 0 32px; }
-  .btn {
-    display: inline-block; background: var(--accent); color: var(--accent-ink);
-    font: 600 1rem var(--body); padding: 14px 26px; border-radius: 999px;
-    border: 0; cursor: pointer; text-decoration: none;
-  }
-  .btn:hover { background: #185a73; }
-  .hint { display: block; margin-top: 14px; font-size: .95rem; color: var(--muted); }
-
-  /* sample conversation */
-  .chat-preview {
-    background: var(--surface); border: 1px solid var(--line);
-    border-radius: 22px; padding: 22px; display: grid; gap: 12px;
-  }
-  .chat-preview .top { font: 600 .95rem var(--head); color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--line); }
-  .msg { max-width: 85%; padding: 11px 15px; border-radius: 16px; font-size: 1rem; line-height: 1.45; }
-  .me { justify-self: end; background: var(--ink); color: #fff; border-bottom-right-radius: 4px; }
-  .bot { background: var(--soft); border-bottom-left-radius: 4px; }
-
-  section { padding: 72px 0; border-top: 1px solid var(--line); }
-  h2 { font: 700 clamp(1.7rem, 3.4vw, 2.4rem)/1.12 var(--head); letter-spacing: -0.02em; margin: 0 0 14px; }
-  .section-intro { color: var(--muted); max-width: 36em; margin: 0 0 40px; }
-
-  .help { list-style: none; margin: 0; padding: 0; }
-  .help li { display: grid; grid-template-columns: 260px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
-  .help li:last-child { border-bottom: 1px solid var(--line); }
-  .help h3 { font: 600 1.2rem var(--head); margin: 0; }
-  .help p { margin: 0; color: var(--muted); }
-
-  .steps { counter-reset: step; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  .steps li { counter-increment: step; }
-  .steps li::before {
-    content: counter(step); display: grid; place-items: center;
-    width: 38px; height: 38px; border-radius: 50%;
-    background: var(--soft); font: 700 1.05rem var(--head); margin-bottom: 14px;
-  }
-  .steps h3 { font: 600 1.2rem var(--head); margin: 0 0 6px; }
-  .steps p { margin: 0; color: var(--muted); }
-
-  .note { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; max-width: 46em; }
-  .note p { margin: 0 0 10px; }
-  .note p:last-child { margin: 0; }
-
-  footer { border-top: 1px solid var(--line); padding: 32px 0 96px; color: var(--muted); font-size: .95rem; }
-
-  @media (max-width: 800px) {
-    .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
-    .help li { grid-template-columns: 1fr; gap: 6px; }
-    .steps { grid-template-columns: 1fr; }
-    nav a:first-child { display: none; }
-  }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  h1 { font-size: 2.2rem; margin: 0 0 8px; }
+  h2 { font-size: 1.3rem; margin-top: 36px; }
+  .tagline { font-size: 1.15rem; color: #50666c; margin-top: 0; }
+  footer { margin-top: 48px; font-size: .9rem; color: #50666c; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <a class="brand" href="#top">CareSolace</a>
-    <nav aria-label="Main">
-      <a href="#help">What it helps with</a>
-      <a href="#how">How it works</a>
-      <a href="#about">About</a>
-    </nav>
-  </div>
-</header>
+<main>
 
-<main id="top">
-  <div class="hero">
-    <div class="wrap">
-      <div>
-        <h1>Answers and support, any hour of the day.</h1>
-        <p class="lead">CareSolace is a chat assistant that listens, answers your questions and points you to the right next step. No waiting on hold, no forms to fill in first.</p>
-        <button class="btn" id="open-chat" type="button">Start a conversation</button>
-        <span class="hint">You can also use the chat button at the bottom right of this page.</span>
-      </div>
-      <div class="chat-preview" aria-label="Example conversation">
-        <div class="top">Example conversation</div>
-        <div class="msg me">Hi, I need some help finding support options.</div>
-        <div class="msg bot">Of course. Tell me a little about what’s going on, and I’ll walk you through what’s available.</div>
-        <div class="msg me">Where do I start?</div>
-        <div class="msg bot">We’ll take it one step at a time. First, what would help most right now?</div>
-      </div>
-    </div>
-  </div>
+  <!-- ========== EDIT YOUR CONTENT BELOW ========== -->
 
-  <section id="help">
-    <div class="wrap">
-      <h2>What CareSolace helps with</h2>
-      <p class="section-intro">Ask in your own words. If CareSolace can’t help with something, it will say so and tell you where to go next.</p>
-      <ul class="help">
-        <li><h3>Finding information</h3><p>Get clear answers to common questions without searching through pages of documents.</p></li>
-        <li><h3>Working out next steps</h3><p>Describe your situation and get a short list of what to do and in what order.</p></li>
-        <li><h3>Getting to a person</h3><p>When you need a human, CareSolace helps you reach the right one.</p></li>
-        <li><h3>Sharing files and voice</h3><p>Upload a document or speak your question if typing isn’t easy.</p></li>
-      </ul>
-    </div>
-  </section>
+  <h1>CareSolace</h1>
+  <p class="tagline">A chat assistant that answers your questions and helps you find the right next step.</p>
 
-  <section id="how">
-    <div class="wrap">
-      <h2>How it works</h2>
-      <p class="section-intro">It takes under a minute to get started.</p>
-      <ol class="steps">
-        <li><h3>Open the chat</h3><p>Select “Start a conversation” or the chat button at the bottom right.</p></li>
-        <li><h3>Say what you need</h3><p>Type, speak or attach a file. Plain language is fine.</p></li>
-        <li><h3>Follow the guidance</h3><p>CareSolace replies with answers and next steps. Start a new chat any time.</p></li>
-      </ol>
-    </div>
-  </section>
+  <h2>What it does</h2>
+  <p>
+    CareSolace is an AI assistant you can talk to in plain language.
+    Describe what you need, and it will answer your questions and point you in the right direction.
+  </p>
 
-  <section id="about">
-    <div class="wrap">
-      <h2>About this assistant</h2>
-      <div class="note">
-        <p>CareSolace is an AI assistant, not a person. It can make mistakes, so check anything important with a qualified professional.</p>
-        <p>If you or someone else is in immediate danger, contact your local emergency services.</p>
-      </div>
-    </div>
-  </section>
+  <h2>How to use it</h2>
+  <p>
+    Select the chat button at the bottom right of this page, then type or speak your question.
+    You can also attach a file. To start over, use the "Start new chat" button inside the chat window.
+  </p>
+
+  <h2>Good to know</h2>
+  <p>
+    CareSolace is an AI, not a person, and it can make mistakes.
+    Please check anything important with a qualified professional.
+  </p>
+
+  <footer>&copy; 2026 CareSolace</footer>
+
+  <!-- ========== END OF EDITABLE CONTENT ========== -->
+
 </main>
 
-<footer>
-  <div class="wrap">© <span id="year">2026</span> CareSolace. All rights reserved.</div>
-</footer>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Search the page, including shadow DOMs, for the chat launcher button.
-  function findLauncher(root) {
-    var buttons = root.querySelectorAll("button, [role='button']");
-    for (var i = 0; i < buttons.length; i++) {
-      var b = buttons[i];
-      var label = (b.getAttribute("aria-label") || b.title || b.textContent || "").toLowerCase();
-      var inTitlebar = b.closest("[slot='titlebar-actions']");
-      if (!inTitlebar && /chat|open|message|assistant|help/.test(label)) return b;
-    }
-    var all = root.querySelectorAll("*");
-    for (var j = 0; j < all.length; j++) {
-      if (all[j].shadowRoot) {
-        var found = findLauncher(all[j].shadowRoot);
-        if (found) return found;
-      }
-    }
-    return null;
-  }
-
-  document.getElementById("open-chat").addEventListener("click", function () {
-    var launcher = findLauncher(document);
-    if (launcher) {
-      launcher.click();
-    } else {
-      alert("Please use the chat button at the bottom right of the page.");
-    }
-  });
-</script>
-
-<!-- ===== CX Agent Studio chat messenger ===== -->
+<!-- ===== CX Agent Studio chat messenger (do not edit below this line) ===== -->
 <script defer
   src="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/chat-messenger.js">
 </script>
@@ -225,7 +76,6 @@
       );
     });
 </script>
-<!-- Update the url-allowlist attribute with a comma-separated list of origins allowed to render images -->
 <chat-messenger
   url-allowlist="*"
 >
