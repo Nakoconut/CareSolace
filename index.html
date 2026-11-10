@@ -118,7 +118,7 @@
     <div class="wrap">
       <h1>Support any hour of the day.</h1>
       <p class="lead">CareSolace is an AI assistant curated for caregivers to help you find the right next step.</p>
-      <button class="custom-btn"; onclick="document.getElementById('chat-now').scrollIntoView({ behavior: 'smooth' });">
+      <button class="custom-btn" id="open-chat" type="button">
         Click here to chat with it
       </button>
     </div>
@@ -173,9 +173,6 @@
 
 </main>
 
-<div id="chat-now";>
-</div>
-
 <!-- ===== CX Agent Studio chat messenger (do not edit below this line) ===== -->
 <script defer
   src="https://www.gstatic.com/chat-messenger/sdk/prod/v1.16/chat-messenger.js">
@@ -205,5 +202,28 @@
   </chat-messenger-chat-bubble>
 </chat-messenger>
 
+  <script>
+    function findLauncher(root) {
+      var els = root.querySelectorAll("button, [role='button']");
+      for (var i = 0; i < els.length; i++) {
+        if (!els[i].closest("[slot='titlebar-actions']")) return els[i];
+      }
+      var all = root.querySelectorAll("*");
+      for (var j = 0; j < all.length; j++) {
+        if (all[j].shadowRoot) {
+          var found = findLauncher(all[j].shadowRoot);
+          if (found) return found;
+        }
+      }
+      return null;
+    }
+  
+    document.getElementById("open-chat").addEventListener("click", function () {
+      var bubble = document.querySelector("chat-messenger-chat-bubble");
+      if (!bubble) return;
+      var launcher = findLauncher(bubble.shadowRoot || bubble);
+      (launcher || bubble).click();
+    });
+  </script>
 </body>
 </html>
