@@ -119,7 +119,7 @@
       <h1>Support any hour of the day.</h1>
       <p class="lead">CareSolace is an AI assistant curated for caregivers to help you find the right next step.</p>
       <button class="custom-btn" id="open-chat" type="button">
-        Click here to start a chat
+        Click to start a chat
       </button>
     </div>
   </div>
@@ -139,7 +139,7 @@
           <p>Describe your situation and get a short list of what to do.</p>
         </div>
         <div class="card">
-          <h3>Takes voice</h3>
+          <h3>Voice support</h3>
           <p>Find it easier to speak? Use voice input instead.</p>
         </div>
       </div>
@@ -201,6 +201,11 @@
       slot="titlebar-actions"
       title-text="Start new chat"
     ></chat-reset-session-button>
+    <chat-toggle-dialog-button
+      slot="titlebar-actions"
+      title-text-expanded="Collapse"
+      title-text-collapsed="Expand"
+    ></chat-toggle-dialog-button>
   </chat-messenger-chat-bubble>
 </chat-messenger>
 
