@@ -119,7 +119,7 @@
       <h1>Support any hour of the day.</h1>
       <p class="lead">CareSolace is an AI assistant curated for caregivers to help you find the right next step.</p>
       <button class="custom-btn" id="open-chat" type="button">
-        Click here to chat with it
+        Click here to start a chat
       </button>
     </div>
   </div>
@@ -139,8 +139,8 @@
           <p>Describe your situation and get a short list of what to do.</p>
         </div>
         <div class="card">
-          <h3>Takes files and voice</h3>
-          <p>Attach a document or speak your question if typing is hard.</p>
+          <h3>Takes voice</h3>
+          <p>Find it easier to speak? Use voice input instead.</p>
         </div>
       </div>
     </div>
@@ -152,7 +152,7 @@
       <h2>How to use it</h2>
       <ol class="steps">
         <li><div><h3>Open the chat</h3><p>Select the chat button at the bottom right of this page.</p></div></li>
-        <li><div><h3>Say what you need</h3><p>Type, speak or attach a file. Plain language is fine.</p></div></li>
+        <li><div><h3>Say what you need</h3><p>Type or speak. Plain language is fine.</p></div></li>
         <li><div><h3>Follow the guidance</h3><p>Use "Start new chat" inside the chat window to begin again.</p></div></li>
       </ol>
     </div>
@@ -194,7 +194,9 @@
     });
 </script>
 <chat-messenger url-allowlist="*">
-  <chat-messenger-chat-bubble chat-title="CareSolace">
+  <chat-messenger-chat-bubble 
+    chat-title="CareSolace"
+    enable-audio-input>
     <chat-reset-session-button
       slot="titlebar-actions"
       title-text="Start new chat"
