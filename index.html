@@ -90,14 +90,6 @@
     color: var(--muted);
     font-size: .95rem;
   }
-
-  chat-messenger {
-  position: fixed !important;
-  z-index: 999;
-  right: 20px !important;
-  bottom: 20px !important;
-  left: auto !important;
-  }
 </style>
 </head>
 <body>
@@ -193,7 +185,7 @@
       );
     });
 </script>
-<chat-messenger url-allowlist="*">
+<chat-messenger url-allowlist="*" render-mode="slide-over">
   <chat-messenger-chat-bubble chat-title="CareSolace">
   </chat-messenger-chat-bubble>
 </chat-messenger>
